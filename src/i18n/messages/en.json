@@ -1,0 +1,30 @@
+{
+  "HomePage": {
+    "title": "Hello world!"
+  },
+  "PostsArchivePage": {
+    "title": "Posts",
+    "description": "A list of all posts on this site.",
+    "range": "Showing {currentPage, plural, =0 {no pages} =1 {1 page} other {# pages}} of {totalPages, plural, =0 {no pages} =1 {1 page} other {# pages}}",
+    "noResults": "No posts found."
+  },
+  "PaginatedPostsArchivePage": {
+    "title": "Posts {pageNumber}",
+    "description": "A list of all posts on this site."
+  },
+  "SearchPage": {
+    "title": "Search Results",
+    "titleWithQuery": "Search Results for {query}",
+    "description": "Find what you are looking for",
+    "noResults": "No results found for {query}"
+  },
+  "NotFoundPage": {
+    "title": "Page Not Found",
+    "message": "Sorry, the page you are looking for does not exist.",
+    "goHome": "Go to Homepage"
+  },
+  "LocaleSwitcher": {
+    "label": "Select Language",
+    "locale": "Language: {locale}"
+  }
+}

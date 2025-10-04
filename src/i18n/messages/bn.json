@@ -1,0 +1,30 @@
+{
+  "HomePage": {
+    "title": "হ্যালো বিশ্ব!"
+  },
+  "PostsArchivePage": {
+    "title": "পোস্টসমূহ",
+    "description": "এই সাইটের সমস্ত পোস্টের একটি তালিকা।",
+    "range": "দেখানো হচ্ছে {currentPage, plural, =0 {কোন পৃষ্ঠা} =1 {1 পৃষ্ঠা} other {# পৃষ্ঠা}} এর মধ্যে {totalPages, plural, =0 {কোন পৃষ্ঠা} =1 {1 পৃষ্ঠা} other {# পৃষ্ঠা}}",
+    "noResults": "কোন পোস্ট পাওয়া যায়নি।"
+  },
+  "PaginatedPostsArchivePage": {
+    "title": "পোস্টসমূহ {pageNumber}",
+    "description": "এই সাইটের সমস্ত পোস্টের একটি তালিকা।"
+  },
+  "SearchPage": {
+    "title": "সার্চ ফলাফল",
+    "titleWithQuery": "{query} এর জন্য সার্চ ফলাফল",
+    "description": "আপনি যা খুঁজছেন তা খুঁজুন",
+    "noResults": "কোন ফলাফল পাওয়া যায়নি {query} এর জন্য"
+  },
+  "NotFoundPage": {
+    "title": "পেজ পাওয়া যায়নি",
+    "message": "দুঃখিত, আপনি যে পেজটি খুঁজছেন তা পাওয়া যায়নি।",
+    "goHome": "হোমপেজে যান"
+  },
+  "LocaleSwitcher": {
+    "label": "ভাষা নির্বাচন করুন",
+    "locale": "ভাষা: {locale}"
+  }
+}
