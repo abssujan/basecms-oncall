@@ -83,6 +83,7 @@ export const Pages: CollectionConfig = {
                 'resetPasswordBlock',
                 'accordion',
                 'carousel',
+                'heroGeometricBlock',
               ],
               blocks: [],
               required: true,

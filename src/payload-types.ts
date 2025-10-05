@@ -90,6 +90,7 @@ export interface Config {
     accountPassword: AccountPasswordBlock;
     accordion: AccordionBlock;
     carousel: CarouselBlock;
+    heroGeometricBlock: HeroGeometricBlock;
   };
   collections: {
     pages: Page;
@@ -282,6 +283,7 @@ export interface Page {
     | ResetPasswordBlock
     | AccordionBlock
     | CarouselBlock
+    | HeroGeometricBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1619,6 +1621,19 @@ export interface CarouselBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'carousel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroGeometricBlock".
+ */
+export interface HeroGeometricBlock {
+  badge?: string | null;
+  title1?: string | null;
+  title2?: string | null;
+  paragraph?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroGeometricBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

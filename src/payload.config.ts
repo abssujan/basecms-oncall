@@ -45,6 +45,7 @@ import { Carousel } from './blocks/Carousel/config'
 import { en } from '@payloadcms/translations/languages/en'
 import { nl } from '@payloadcms/translations/languages/nl'
 import { bnBd } from '@payloadcms/translations/languages/bnBd'
+import { HeroGeometricBlock } from './blocks/heros/HeroGeometric/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -113,6 +114,7 @@ export default buildConfig({
     AccountPassword,
     Accordion,
     Carousel,
+    HeroGeometricBlock,
   ],
   collections: [Pages, Users, Media, Categories, Posts, Orders, Customers, Dashboard],
   editor: defaultLexical,
