@@ -22,6 +22,7 @@ import { AccountNameBlock } from './Account/Name/Component'
 import { AccountPasswordBlock } from './Account/Password/Component'
 import { AccordionBlock } from './Accordion/Component'
 import { CarouselBlock } from './Carousel/Component'
+import { HeroGeometricComponent } from './heros/HeroGeometric/component'
 
 type LayoutBlock =
   | Page['layout'][number]
@@ -60,6 +61,7 @@ const blockComponents: BlockComponentMap = {
   accountPassword: AccountPasswordBlock,
   accordion: AccordionBlock,
   carousel: CarouselBlock,
+  heroGeometricBlock: HeroGeometricComponent,
 }
 
 // Generic helper preserves the specific block subtype
