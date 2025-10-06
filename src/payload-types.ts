@@ -91,6 +91,7 @@ export interface Config {
     accordion: AccordionBlock;
     carousel: CarouselBlock;
     heroGeometricBlock: HeroGeometricBlock;
+    navigationBar: NavigationBarBlock;
   };
   collections: {
     pages: Page;
@@ -1639,6 +1640,38 @@ export interface HeroGeometricBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NavigationBarBlock".
+ */
+export interface NavigationBarBlock {
+  navigationItems?:
+    | {
+        title: string;
+        href?: string | null;
+        description?: string | null;
+        items?:
+          | {
+              title: string;
+              href: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  buttons?:
+    | {
+        label: string;
+        href: string;
+        variant?: ('default' | 'destructive' | 'ghost' | 'link' | 'outline' | 'secondary') | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'navigationBar';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "orders".
  */
 export interface Order {
@@ -2600,7 +2633,7 @@ export interface Footer {
  */
 export interface HeaderWithDropDown {
   id: number;
-  layout: unknown[];
+  layout: NavigationBarBlock[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }

@@ -47,6 +47,7 @@ import { nl } from '@payloadcms/translations/languages/nl'
 import { bnBd } from '@payloadcms/translations/languages/bnBd'
 import { HeroGeometricBlock } from './blocks/heros/HeroGeometric/config'
 import { HeaderWithDropdown } from './globals/HeaderWithDropdown'
+import { NavigationBarBlock } from './blocks/Navigationbar/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -118,6 +119,7 @@ export default buildConfig({
     Accordion,
     Carousel,
     HeroGeometricBlock,
+    NavigationBarBlock,
   ],
   collections: [Pages, Users, Media, Categories, Posts, Orders, Customers, Dashboard],
   editor: defaultLexical,
