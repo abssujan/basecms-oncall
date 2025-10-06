@@ -46,6 +46,7 @@ import { en } from '@payloadcms/translations/languages/en'
 import { nl } from '@payloadcms/translations/languages/nl'
 import { bnBd } from '@payloadcms/translations/languages/bnBd'
 import { HeroGeometricBlock } from './blocks/heros/HeroGeometric/config'
+import { HeaderWithDropdown } from './globals/HeaderWithDropdown'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -120,7 +121,7 @@ export default buildConfig({
   ],
   collections: [Pages, Users, Media, Categories, Posts, Orders, Customers, Dashboard],
   editor: defaultLexical,
-  globals: [General, Header, Footer],
+  globals: [General, Header, Footer, HeaderWithDropdown],
   secret: process.env.PAYLOAD_SECRET || '',
   cors: [getServerSideURL()].filter(Boolean),
   typescript: {

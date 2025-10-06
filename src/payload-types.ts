@@ -140,11 +140,13 @@ export interface Config {
     general: General;
     header: Header;
     footer: Footer;
+    headerWithDropDown: HeaderWithDropDown;
   };
   globalsSelect: {
     general: GeneralSelect<false> | GeneralSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    headerWithDropDown: HeaderWithDropDownSelect<false> | HeaderWithDropDownSelect<true>;
   };
   locale: 'en' | 'nl' | 'bn';
   user:
@@ -2594,6 +2596,16 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "headerWithDropDown".
+ */
+export interface HeaderWithDropDown {
+  id: number;
+  layout: unknown[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "general_select".
  */
 export interface GeneralSelect<T extends boolean = true> {
@@ -2627,6 +2639,16 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  layout?: T | {};
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "headerWithDropDown_select".
+ */
+export interface HeaderWithDropDownSelect<T extends boolean = true> {
   layout?: T | {};
   updatedAt?: T;
   createdAt?: T;
