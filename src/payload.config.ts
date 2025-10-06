@@ -61,7 +61,9 @@ export default buildConfig({
         ? { email: 'john@example.com', password: 'password', prefillOnly: true }
         : false,
     components: {
-      beforeDashboard: ['@/components/BeforeDashboard'],
+      // The seed function is currently disabled to prevent automatic data seeding.
+      // Uncomment the line below if you want to enable seeding for the BeforeDashboard component.
+      // beforeDashboard: ['@/components/BeforeDashboard'],
       graphics: {
         Icon: '@/components/icon',
         Logo: '@/components/logo',
