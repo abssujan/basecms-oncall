@@ -21,6 +21,7 @@ interface NavItem {
   description?: string | null | undefined
   items?: NavItem[] | null | undefined
   id?: string | null | undefined
+  callNow?: string | null
 }
 
 const NavigationBarComponent: React.FC<NavigationBarBlock> = ({ navigationItems, buttons }) => {
@@ -84,7 +85,7 @@ const NavigationBarComponent: React.FC<NavigationBarBlock> = ({ navigationItems,
                               <p className="text-muted-foreground text-sm">{item.description}</p>
                             </div>
                             <Button size="sm" className="mt-10">
-                              Book a call today
+                              {item.callNow}
                             </Button>
                           </div>
                           <div className="flex flex-col text-sm h-full justify-end">

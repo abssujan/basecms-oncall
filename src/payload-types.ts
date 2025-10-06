@@ -1648,6 +1648,7 @@ export interface NavigationBarBlock {
         title: string;
         href?: string | null;
         description?: string | null;
+        callNow?: string | null;
         items?:
           | {
               title: string;

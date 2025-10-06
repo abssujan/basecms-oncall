@@ -30,6 +30,11 @@ export const NavigationBarBlock: Block = {
         },
         { name: 'description', type: 'textarea' },
         {
+          name: 'callNow',
+          label: 'Call Now Button',
+          type: 'text',
+        },
+        {
           name: 'items',
           dbName: 'dropdown', // <-- short DB name
           type: 'array',
