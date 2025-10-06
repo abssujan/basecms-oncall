@@ -2,6 +2,7 @@ import { Block } from 'payload'
 
 export const NavigationBarBlock: Block = {
   slug: 'navigationBar',
+  dbName: 'navBar', // <-- short DB name for Postgres
   admin: {
     group: 'Navigation',
   },
@@ -13,14 +14,12 @@ export const NavigationBarBlock: Block = {
   fields: [
     {
       name: 'navigationItems',
+      dbName: 'navItems', // <-- short DB name
       type: 'array',
       label: 'Navigation Items',
+      admin: { initCollapsed: true },
       fields: [
-        {
-          name: 'title',
-          type: 'text',
-          required: true,
-        },
+        { name: 'title', type: 'text', required: true },
         {
           name: 'href',
           label: 'Link (ex: /product or full URL — leave empty to create a dropdown menu)',
@@ -29,20 +28,15 @@ export const NavigationBarBlock: Block = {
             condition: (data, siblingData) => !siblingData?.items || siblingData.items.length === 0,
           },
         },
-        {
-          name: 'description',
-          type: 'textarea',
-        },
+        { name: 'description', type: 'textarea' },
         {
           name: 'items',
+          dbName: 'dropdown', // <-- short DB name
           type: 'array',
           label: 'Dropdown Items',
+          admin: { initCollapsed: true },
           fields: [
-            {
-              name: 'title',
-              type: 'text',
-              required: true,
-            },
+            { name: 'title', type: 'text', required: true },
             {
               name: 'href',
               label: 'Link (ex: /product or full URL)',
@@ -50,34 +44,18 @@ export const NavigationBarBlock: Block = {
               required: true,
             },
           ],
-          admin: {
-            initCollapsed: true,
-          },
         },
       ],
-      admin: {
-        initCollapsed: true,
-      },
     },
     {
       name: 'buttons',
+      dbName: 'btns', // <-- short DB name
       type: 'array',
       label: 'Action Buttons',
-      admin: {
-        initCollapsed: true,
-      },
+      admin: { initCollapsed: true },
       fields: [
-        {
-          name: 'label',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'href',
-          label: 'Link (ex: /product or full URL)',
-          type: 'text',
-          required: true,
-        },
+        { name: 'label', type: 'text', required: true },
+        { name: 'href', label: 'Link (ex: /product or full URL)', type: 'text', required: true },
         {
           name: 'variant',
           type: 'select',
@@ -92,6 +70,7 @@ export const NavigationBarBlock: Block = {
           defaultValue: 'default',
         },
       ],
+      maxRows: 6,
     },
   ],
 }

@@ -17,7 +17,7 @@ export const HeaderWithDropdown: GlobalConfig = {
       name: 'layout',
       type: 'blocks',
       label: false,
-      blockReferences: ['navigationBar'],
+      blockReferences: ['navigationBar', 'nav'],
       blocks: [],
       required: true,
       admin: {

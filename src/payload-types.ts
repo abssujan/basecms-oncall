@@ -2633,7 +2633,7 @@ export interface Footer {
  */
 export interface HeaderWithDropDown {
   id: number;
-  layout: NavigationBarBlock[];
+  layout: (NavigationBarBlock | NavBlock)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }

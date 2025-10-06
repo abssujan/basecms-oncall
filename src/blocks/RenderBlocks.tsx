@@ -1,4 +1,4 @@
-import type { Dashboard, Footer, Header, Page } from '@/payload-types'
+import type { Dashboard, Footer, Header, HeaderWithDropDown, Page } from '@/payload-types'
 import { CallToActionBlock } from './CallToAction/Component'
 import { HighImpactHeroBlock } from './heros/HighImpact/Component'
 import { MediumImpactHeroBlock } from './heros/MediumImpact/Component'
@@ -23,12 +23,14 @@ import { AccountPasswordBlock } from './Account/Password/Component'
 import { AccordionBlock } from './Accordion/Component'
 import { CarouselBlock } from './Carousel/Component'
 import { HeroGeometricComponent } from './heros/HeroGeometric/component'
+import { NavigationBarComponent } from './Navigationbar/component'
 
 type LayoutBlock =
   | Page['layout'][number]
   | Dashboard['layout'][number]
   | Header['layout'][number]
   | Footer['layout'][number]
+  | HeaderWithDropDown['layout'][number]
 
 type BlockType = LayoutBlock['blockType']
 
@@ -62,6 +64,7 @@ const blockComponents: BlockComponentMap = {
   accordion: AccordionBlock,
   carousel: CarouselBlock,
   heroGeometricBlock: HeroGeometricComponent,
+  navigationBar: NavigationBarComponent,
 }
 
 // Generic helper preserves the specific block subtype
