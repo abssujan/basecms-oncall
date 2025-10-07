@@ -92,6 +92,7 @@ export interface Config {
     carousel: CarouselBlock;
     heroGeometricBlock: HeroGeometricBlock;
     navigationBar: NavigationBarBlock;
+    footerTwoBlock: FooterTwoBlock;
   };
   collections: {
     pages: Page;
@@ -142,12 +143,14 @@ export interface Config {
     header: Header;
     footer: Footer;
     headerWithDropDown: HeaderWithDropDown;
+    footerTwo: FooterTwo;
   };
   globalsSelect: {
     general: GeneralSelect<false> | GeneralSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     headerWithDropDown: HeaderWithDropDownSelect<false> | HeaderWithDropDownSelect<true>;
+    footerTwo: FooterTwoSelect<false> | FooterTwoSelect<true>;
   };
   locale: 'en' | 'nl' | 'bn';
   user:
@@ -1673,6 +1676,46 @@ export interface NavigationBarBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterTwoBlock".
+ */
+export interface FooterTwoBlock {
+  newsletter: {
+    title: string;
+    description?: string | null;
+  };
+  quickLinks?:
+    | {
+        label: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  contact?: {
+    address?: string | null;
+    phone?: string | null;
+    email?: string | null;
+  };
+  socialLinks?:
+    | {
+        platform: 'facebook' | 'twitter' | 'linkedin' | 'instagram';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  bottomLinks?:
+    | {
+        label: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  copyright?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'footerTwoBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "orders".
  */
 export interface Order {
@@ -2640,6 +2683,16 @@ export interface HeaderWithDropDown {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footerTwo".
+ */
+export interface FooterTwo {
+  id: number;
+  layout: FooterTwoBlock[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "general_select".
  */
 export interface GeneralSelect<T extends boolean = true> {
@@ -2683,6 +2736,16 @@ export interface FooterSelect<T extends boolean = true> {
  * via the `definition` "headerWithDropDown_select".
  */
 export interface HeaderWithDropDownSelect<T extends boolean = true> {
+  layout?: T | {};
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footerTwo_select".
+ */
+export interface FooterTwoSelect<T extends boolean = true> {
   layout?: T | {};
   updatedAt?: T;
   createdAt?: T;

@@ -48,6 +48,8 @@ import { bnBd } from '@payloadcms/translations/languages/bnBd'
 import { HeroGeometricBlock } from './blocks/heros/HeroGeometric/config'
 import { HeaderWithDropdown } from './globals/HeaderWithDropdown'
 import { NavigationBarBlock } from './blocks/Navigationbar/config'
+import { FooterTwo } from './globals/FooterTwo'
+import { FooterTwoBlock } from './blocks/FooterTwo/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -120,10 +122,11 @@ export default buildConfig({
     Carousel,
     HeroGeometricBlock,
     NavigationBarBlock,
+    FooterTwoBlock,
   ],
   collections: [Pages, Users, Media, Categories, Posts, Orders, Customers, Dashboard],
   editor: defaultLexical,
-  globals: [General, Header, Footer, HeaderWithDropdown],
+  globals: [General, Header, Footer, HeaderWithDropdown, FooterTwo],
   secret: process.env.PAYLOAD_SECRET || '',
   cors: [getServerSideURL()].filter(Boolean),
   typescript: {

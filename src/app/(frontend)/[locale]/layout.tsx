@@ -6,7 +6,7 @@ import { getServerSideURL } from '@/lib/getURL'
 import { mergeOpenGraph } from '@/lib/mergeOpenGraph'
 import { AdminBar } from '@/components/AdminBar'
 import { draftMode } from 'next/headers'
-import type { Footer, Header, HeaderWithDropDown } from '@/payload-types'
+import type { Footer, FooterTwo, Header, HeaderWithDropDown } from '@/payload-types'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
@@ -44,9 +44,9 @@ export default async function RootLayout({ children, params }: LayoutProps) {
   })) as HeaderWithDropDown
   const { layout: footerLayout } = (await queryGlobal({
     locale: locale as TypedLocale,
-    slug: 'footer',
+    slug: 'footerTwo',
     depth: 1,
-  })) as Footer
+  })) as FooterTwo
 
   return (
     <html lang={locale} suppressHydrationWarning>
