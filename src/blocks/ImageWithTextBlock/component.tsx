@@ -1,21 +1,12 @@
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Media } from '@/payload-types'
+import { ImageWithText, Media } from '@/payload-types'
 import React from 'react'
 
-export interface ImageWithText {
-  title: string
-  badge?: string
-  description?: string
-  additionalParagraphs?: { id: string; text: string }[]
-  backgroundImage?: Media | string | null
-  foregroundImage?: Media | string | null
-  button?: { label: string; href?: string }
-}
-
-// Helper to safely get a URL from Media or string
-function getMediaUrl(media: Media | string | null | undefined): string {
+// Helper to safely get Media URL
+function getMediaUrl(media: number | Media | string | null | undefined): string {
   if (!media) return ''
+  if (typeof media === 'number') return '' // cannot render number directly
   if (typeof media === 'string') return media
   return media.url || media.transformedUrl || media.originalUrl || ''
 }
@@ -35,30 +26,22 @@ export const ImageWithTextComponent: React.FC<ImageWithText> = ({
         {/* Left image */}
         <div className="relative w-full h-[600px]">
           {/* Background Image */}
-          {backgroundImage && (
+          {backgroundImage && typeof backgroundImage !== 'number' && (
             <div className="w-full h-full">
               <img
                 src={getMediaUrl(backgroundImage)}
-                alt={
-                  typeof backgroundImage === 'string'
-                    ? 'Background'
-                    : backgroundImage.alt || 'Background'
-                }
+                alt={backgroundImage.alt || 'Background'}
                 className="w-[80%] h-full object-cover rounded-lg shadow-lg"
               />
             </div>
           )}
 
           {/* Foreground Image */}
-          {foregroundImage && (
+          {foregroundImage && typeof foregroundImage !== 'number' && (
             <Card className="absolute -bottom-10 -right-2 z-10 w-[70%] h-[60%] p-1 border-gray-100">
               <img
                 src={getMediaUrl(foregroundImage)}
-                alt={
-                  typeof foregroundImage === 'string'
-                    ? 'Foreground'
-                    : foregroundImage.alt || 'Foreground'
-                }
+                alt={foregroundImage.alt || 'Foreground'}
                 className="w-full h-full object-cover rounded-lg"
               />
             </Card>
@@ -73,8 +56,8 @@ export const ImageWithTextComponent: React.FC<ImageWithText> = ({
           <div className="space-y-4 mt-5 text-sm">
             {description && <p>{description}</p>}
 
-            {additionalParagraphs?.map((para) => (
-              <p key={para.id}>{para.text}</p>
+            {additionalParagraphs?.map((para, idx) => (
+              <p key={idx}>{para.text}</p>
             ))}
           </div>
 
