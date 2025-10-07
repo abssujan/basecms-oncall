@@ -84,6 +84,7 @@ export const Pages: CollectionConfig = {
                 'accordion',
                 'carousel',
                 'heroGeometricBlock',
+                'imageWithText',
               ],
               blocks: [],
               required: true,

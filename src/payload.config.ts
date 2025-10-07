@@ -50,6 +50,7 @@ import { HeaderWithDropdown } from './globals/HeaderWithDropdown'
 import { NavigationBarBlock } from './blocks/Navigationbar/config'
 import { FooterTwo } from './globals/FooterTwo'
 import { FooterTwoBlock } from './blocks/FooterTwo/config'
+import { ImageWithTextBlock } from './blocks/ImageWithTextBlock/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -123,6 +124,7 @@ export default buildConfig({
     HeroGeometricBlock,
     NavigationBarBlock,
     FooterTwoBlock,
+    ImageWithTextBlock,
   ],
   collections: [Pages, Users, Media, Categories, Posts, Orders, Customers, Dashboard],
   editor: defaultLexical,

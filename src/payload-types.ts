@@ -93,6 +93,7 @@ export interface Config {
     heroGeometricBlock: HeroGeometricBlock;
     navigationBar: NavigationBarBlock;
     footerTwoBlock: FooterTwoBlock;
+    imageWithText: ImageWithText;
   };
   collections: {
     pages: Page;
@@ -290,6 +291,7 @@ export interface Page {
     | AccordionBlock
     | CarouselBlock
     | HeroGeometricBlock
+    | ImageWithText
   )[];
   meta?: {
     title?: string | null;
@@ -1640,6 +1642,51 @@ export interface HeroGeometricBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroGeometricBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "imageWithText".
+ */
+export interface ImageWithText {
+  /**
+   * A short label displayed above the title, e.g. “About Us” or “Our Story”.
+   */
+  badge?: string | null;
+  /**
+   * Main heading of this section.
+   */
+  title: string;
+  /**
+   * The main body text or introductory description.
+   */
+  description?: string | null;
+  /**
+   * Add one or more supporting paragraphs below the main description.
+   */
+  additionalParagraphs?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Main image displayed in the background or left side of the section.
+   */
+  backgroundImage: number | Media;
+  /**
+   * Optional image layered over the background image.
+   */
+  foregroundImage?: (number | null) | Media;
+  /**
+   * Optional call-to-action button with label and link.
+   */
+  button?: {
+    label?: string | null;
+    href?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'imageWithText';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
