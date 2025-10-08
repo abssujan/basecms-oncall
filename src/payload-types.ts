@@ -94,6 +94,7 @@ export interface Config {
     navigationBar: NavigationBarBlock;
     footerTwoBlock: FooterTwoBlock;
     imageWithText: ImageWithText;
+    serviceBlock: ServiceBlock;
   };
   collections: {
     pages: Page;
@@ -1765,49 +1766,13 @@ export interface FooterTwoBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "orders".
+ * via the `definition` "serviceBlock".
  */
-export interface Order {
-  id: number;
-  product: string;
-  plan: string;
-  price: number;
-  quantity: number;
-  total: number;
-  status: string;
-  mode: string;
-  customer: number | Customer;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "customers".
- */
-export interface Customer {
-  id: number;
-  name: string;
-  stripeID?: string | null;
-  skipSync?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  _verified?: boolean | null;
-  _verificationToken?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
+export interface ServiceBlock {
+  services: (number | Service)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'serviceBlock';
 }
 /**
  * Manage all services offered by your business, including pricing, areas, and layout content.
@@ -1881,6 +1846,52 @@ export interface Service {
   };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders".
+ */
+export interface Order {
+  id: number;
+  product: string;
+  plan: string;
+  price: number;
+  quantity: number;
+  total: number;
+  status: string;
+  mode: string;
+  customer: number | Customer;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customers".
+ */
+export interface Customer {
+  id: number;
+  name: string;
+  stripeID?: string | null;
+  skipSync?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  _verified?: boolean | null;
+  _verificationToken?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -52,6 +52,7 @@ import { FooterTwo } from './globals/FooterTwo'
 import { FooterTwoBlock } from './blocks/FooterTwo/config'
 import { ImageWithTextBlock } from './blocks/ImageWithTextBlock/config'
 import { Services } from './collections/Service'
+import { ServiceBlock } from './blocks/ServiceBlock/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -126,6 +127,7 @@ export default buildConfig({
     NavigationBarBlock,
     FooterTwoBlock,
     ImageWithTextBlock,
+    ServiceBlock,
   ],
   collections: [Pages, Users, Media, Categories, Posts, Orders, Customers, Dashboard, Services],
   editor: defaultLexical,
