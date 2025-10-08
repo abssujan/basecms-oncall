@@ -2,6 +2,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ImageWithText, Media } from '@/payload-types'
 import React from 'react'
+// import { Media } from '@/components/Media'
 
 // Helper to safely get Media URL
 function getMediaUrl(media: number | Media | string | null | undefined): string {
@@ -27,12 +28,16 @@ export const ImageWithTextComponent: React.FC<ImageWithText> = ({
         <div className="relative w-full h-[600px]">
           {/* Background Image */}
           {backgroundImage && typeof backgroundImage !== 'number' && (
-            <div className="w-full h-full">
+            <div className="w-full h-full rounded-lg">
               <img
                 src={getMediaUrl(backgroundImage)}
                 alt={backgroundImage.alt || 'Background'}
                 className="w-[80%] h-full object-cover rounded-lg shadow-lg"
               />
+              {/* <Media
+                className="h-full object-cover rounded-xl shadow-lg"
+                resource={backgroundImage}
+              /> */}
             </div>
           )}
 
@@ -44,6 +49,7 @@ export const ImageWithTextComponent: React.FC<ImageWithText> = ({
                 alt={foregroundImage.alt || 'Foreground'}
                 className="w-full h-full object-cover rounded-lg"
               />
+              {/* <Media className="w-full h-full object-cover rounded-lg" resource={foregroundImage} /> */}
             </Card>
           )}
         </div>

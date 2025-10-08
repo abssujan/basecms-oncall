@@ -4,7 +4,6 @@ import type {
   FooterTwo,
   Header,
   HeaderWithDropDown,
-  ImageWithText,
   Page,
 } from '@/payload-types'
 import { CallToActionBlock } from './CallToAction/Component'
@@ -42,8 +41,6 @@ type LayoutBlock =
   | Footer['layout'][number]
   | HeaderWithDropDown['layout'][number]
   | FooterTwo['layout'][number]
-  | ImageWithText
-
 type BlockType = LayoutBlock['blockType']
 
 // Map each blockType to its component with the correctly narrowed props
