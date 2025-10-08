@@ -104,6 +104,7 @@ export interface Config {
     orders: Order;
     customers: Customer;
     dashboard: Dashboard;
+    services: Service;
     redirects: Redirect;
     search: Search;
     forms: Form;
@@ -125,6 +126,7 @@ export interface Config {
     orders: OrdersSelect<false> | OrdersSelect<true>;
     customers: CustomersSelect<false> | CustomersSelect<true>;
     dashboard: DashboardSelect<false> | DashboardSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     search: SearchSelect<false> | SearchSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
@@ -1808,6 +1810,79 @@ export interface Customer {
   password?: string | null;
 }
 /**
+ * Manage all services offered by your business, including pricing, areas, and layout content.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  /**
+   * Enter the name of the service as you want it displayed to users.
+   */
+  serviceName: string;
+  /**
+   * Brief summary shown in cards and previews.
+   */
+  shortDescription: string;
+  startingPrice?: string | null;
+  responseTime?: string | null;
+  /**
+   * Specify the region or area where this service is available.
+   */
+  serviceArea?: string | null;
+  /**
+   * Add short labels like “24/7 Support” or “Top Rated”.
+   */
+  badges?:
+    | {
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Upload a main image that represents this service.
+   */
+  image?: (number | null) | Media;
+  /**
+   * Choose how this service will appear on the website.
+   */
+  variant?: ('featured' | 'default' | 'compact') | null;
+  /**
+   * Unique identifier for the service. Can be auto-generated or manually set.
+   */
+  serviceId?: string | null;
+  /**
+   * Build your page layout by adding content blocks below.
+   */
+  layout?:
+    | (
+        | CallToActionBlock
+        | HighImpactHero
+        | MediumImpactHero
+        | LowImpactHero
+        | ContentBlock
+        | MediaBlock
+        | CodeBlock
+        | BannerBlock
+        | NavBlock
+        | FooterBlock
+        | ArchiveBlock
+        | FormBlock
+      )[]
+    | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
@@ -2047,6 +2122,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'dashboard';
         value: number | Dashboard;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: number | Service;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -2361,6 +2440,36 @@ export interface DashboardSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  serviceName?: T;
+  shortDescription?: T;
+  startingPrice?: T;
+  responseTime?: T;
+  serviceArea?: T;
+  badges?:
+    | T
+    | {
+        label?: T;
+        id?: T;
+      };
+  image?: T;
+  variant?: T;
+  serviceId?: T;
+  layout?: T | {};
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
