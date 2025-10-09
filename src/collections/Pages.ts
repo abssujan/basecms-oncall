@@ -85,6 +85,7 @@ export const Pages: CollectionConfig = {
                 'carousel',
                 'heroGeometricBlock',
                 'imageWithText',
+                'serviceBlock',
               ],
               blocks: [],
               required: true,

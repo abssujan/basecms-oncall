@@ -9,9 +9,9 @@ export const Services: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'serviceName',
-    group: 'Content', // Optional: or “Business” if you want a business group
+    group: 'Content',
     description:
-      'Manage all services offered by your business, including pricing, areas, and layout content.',
+      'Manage all services offered by your business, including pricing, areas, buttons, and layout content.',
     defaultColumns: ['serviceName', 'startingPrice', 'serviceArea', 'variant'],
     preview: (doc) => `/services/${doc?.serviceId || doc?.id}`,
   },
@@ -115,6 +115,46 @@ export const Services: CollectionConfig = {
       admin: {
         description: 'Unique identifier for the service. Can be auto-generated or manually set.',
       },
+    },
+    {
+      name: 'buttons',
+      label: 'Action Buttons',
+      type: 'array',
+      labels: {
+        singular: 'Button',
+        plural: 'Buttons',
+      },
+      admin: {
+        description: 'Add buttons like "View Details" or "Book Now"',
+      },
+      fields: [
+        {
+          name: 'label',
+          label: 'Button Label',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'href',
+          label: 'Button Link',
+          type: 'text',
+          required: true,
+          admin: {
+            placeholder: '/services/your-service-id',
+          },
+        },
+        {
+          name: 'variant',
+          label: 'Button Style',
+          type: 'select',
+          options: [
+            { label: 'Ghost', value: 'ghost' },
+            { label: 'Primary', value: 'primary' },
+            { label: 'Secondary', value: 'secondary' },
+          ],
+          defaultValue: 'primary',
+        },
+      ],
     },
     {
       type: 'tabs',

@@ -33,6 +33,7 @@ import { HeroGeometricComponent } from './heros/HeroGeometric/component'
 import { NavigationBarComponent } from './Navigationbar/component'
 import { FooterBlockTwoComponent } from './FooterTwo/component'
 import { ImageWithTextComponent } from './ImageWithTextBlock/component'
+import { ServiceComponent } from './ServiceBlock/component'
 
 type LayoutBlock =
   | Page['layout'][number]
@@ -76,6 +77,7 @@ const blockComponents: BlockComponentMap = {
   navigationBar: NavigationBarComponent,
   footerTwoBlock: FooterBlockTwoComponent,
   imageWithText: ImageWithTextComponent,
+  serviceBlock: ServiceComponent,
 }
 
 // Generic helper preserves the specific block subtype

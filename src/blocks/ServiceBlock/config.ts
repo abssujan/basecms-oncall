@@ -4,7 +4,7 @@ export const ServiceBlock: Block = {
   slug: 'serviceBlock',
   labels: { singular: 'Service Block', plural: 'Service Blocks' },
   admin: {
-    group: 'Content Block',
+    group: 'Content Blocks',
   },
   fields: [
     {

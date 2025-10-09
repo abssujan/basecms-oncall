@@ -295,6 +295,7 @@ export interface Page {
     | CarouselBlock
     | HeroGeometricBlock
     | ImageWithText
+    | ServiceBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1693,6 +1694,100 @@ export interface ImageWithText {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "serviceBlock".
+ */
+export interface ServiceBlock {
+  services: (number | Service)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'serviceBlock';
+}
+/**
+ * Manage all services offered by your business, including pricing, areas, buttons, and layout content.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  /**
+   * Enter the name of the service as you want it displayed to users.
+   */
+  serviceName: string;
+  /**
+   * Brief summary shown in cards and previews.
+   */
+  shortDescription: string;
+  startingPrice?: string | null;
+  responseTime?: string | null;
+  /**
+   * Specify the region or area where this service is available.
+   */
+  serviceArea?: string | null;
+  /**
+   * Add short labels like “24/7 Support” or “Top Rated”.
+   */
+  badges?:
+    | {
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Upload a main image that represents this service.
+   */
+  image?: (number | null) | Media;
+  /**
+   * Choose how this service will appear on the website.
+   */
+  variant?: ('featured' | 'default' | 'compact') | null;
+  /**
+   * Unique identifier for the service. Can be auto-generated or manually set.
+   */
+  serviceId?: string | null;
+  /**
+   * Add buttons like "View Details" or "Book Now"
+   */
+  buttons?:
+    | {
+        label: string;
+        href: string;
+        variant?: ('ghost' | 'primary' | 'secondary') | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Build your page layout by adding content blocks below.
+   */
+  layout?:
+    | (
+        | CallToActionBlock
+        | HighImpactHero
+        | MediumImpactHero
+        | LowImpactHero
+        | ContentBlock
+        | MediaBlock
+        | CodeBlock
+        | BannerBlock
+        | NavBlock
+        | FooterBlock
+        | ArchiveBlock
+        | FormBlock
+      )[]
+    | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "NavigationBarBlock".
  */
 export interface NavigationBarBlock {
@@ -1763,89 +1858,6 @@ export interface FooterTwoBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'footerTwoBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "serviceBlock".
- */
-export interface ServiceBlock {
-  services: (number | Service)[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'serviceBlock';
-}
-/**
- * Manage all services offered by your business, including pricing, areas, and layout content.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "services".
- */
-export interface Service {
-  id: number;
-  /**
-   * Enter the name of the service as you want it displayed to users.
-   */
-  serviceName: string;
-  /**
-   * Brief summary shown in cards and previews.
-   */
-  shortDescription: string;
-  startingPrice?: string | null;
-  responseTime?: string | null;
-  /**
-   * Specify the region or area where this service is available.
-   */
-  serviceArea?: string | null;
-  /**
-   * Add short labels like “24/7 Support” or “Top Rated”.
-   */
-  badges?:
-    | {
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Upload a main image that represents this service.
-   */
-  image?: (number | null) | Media;
-  /**
-   * Choose how this service will appear on the website.
-   */
-  variant?: ('featured' | 'default' | 'compact') | null;
-  /**
-   * Unique identifier for the service. Can be auto-generated or manually set.
-   */
-  serviceId?: string | null;
-  /**
-   * Build your page layout by adding content blocks below.
-   */
-  layout?:
-    | (
-        | CallToActionBlock
-        | HighImpactHero
-        | MediumImpactHero
-        | LowImpactHero
-        | ContentBlock
-        | MediaBlock
-        | CodeBlock
-        | BannerBlock
-        | NavBlock
-        | FooterBlock
-        | ArchiveBlock
-        | FormBlock
-      )[]
-    | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
-    description?: string | null;
-  };
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2471,6 +2483,14 @@ export interface ServicesSelect<T extends boolean = true> {
   image?: T;
   variant?: T;
   serviceId?: T;
+  buttons?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        variant?: T;
+        id?: T;
+      };
   layout?: T | {};
   meta?:
     | T
