@@ -95,6 +95,7 @@ export interface Config {
     footerTwoBlock: FooterTwoBlock;
     imageWithText: ImageWithText;
     serviceBlock: ServiceBlock;
+    infoSection: InfoSection;
   };
   collections: {
     pages: Page;
@@ -1858,6 +1859,18 @@ export interface FooterTwoBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'footerTwoBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "infoSection".
+ */
+export interface InfoSection {
+  badge: string;
+  title: string;
+  description: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'infoSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

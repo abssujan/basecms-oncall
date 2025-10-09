@@ -95,7 +95,6 @@ function mapButtonVariant(variant?: string | null): ButtonVariant {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
-  id = 'service-card',
   serviceName = 'Professional Service',
   shortDescription = 'Quality service with expert technicians',
   startingPrice = 'From ৳1,000',
