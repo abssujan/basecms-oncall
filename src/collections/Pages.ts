@@ -87,6 +87,7 @@ export const Pages: CollectionConfig = {
                 'imageWithText',
                 'serviceBlock',
                 'infoSection',
+                'contentShowcase',
               ],
               blocks: [],
               required: true,

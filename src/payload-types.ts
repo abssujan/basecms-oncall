@@ -96,6 +96,7 @@ export interface Config {
     imageWithText: ImageWithText;
     serviceBlock: ServiceBlock;
     infoSection: InfoSection;
+    contentShowcase: ContentShowcase;
   };
   collections: {
     pages: Page;
@@ -298,6 +299,7 @@ export interface Page {
     | ImageWithText
     | ServiceBlock
     | InfoSection
+    | ContentShowcase
   )[];
   meta?: {
     title?: string | null;
@@ -1799,6 +1801,44 @@ export interface InfoSection {
   id?: string | null;
   blockName?: string | null;
   blockType: 'infoSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contentShowcase".
+ */
+export interface ContentShowcase {
+  /**
+   * A short label or category displayed above the title (e.g., “Our Mission”).
+   */
+  badge: string;
+  /**
+   * The main headline for this section.
+   */
+  title: string;
+  /**
+   * Add a short paragraph describing this section.
+   */
+  description: string;
+  /**
+   * Text for the call-to-action button (optional).
+   */
+  buttonText?: string | null;
+  /**
+   * URL or page link for the button (optional).
+   */
+  buttonLink?: string | null;
+  /**
+   * Add one or more images to display in the shuffle grid on the right.
+   */
+  images?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contentShowcase';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
