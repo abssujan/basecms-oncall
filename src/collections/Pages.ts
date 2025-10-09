@@ -86,6 +86,7 @@ export const Pages: CollectionConfig = {
                 'heroGeometricBlock',
                 'imageWithText',
                 'serviceBlock',
+                'infoSection',
               ],
               blocks: [],
               required: true,

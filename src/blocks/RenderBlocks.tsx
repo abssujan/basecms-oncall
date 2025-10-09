@@ -34,6 +34,7 @@ import { NavigationBarComponent } from './Navigationbar/component'
 import { FooterBlockTwoComponent } from './FooterTwo/component'
 import { ImageWithTextComponent } from './ImageWithTextBlock/component'
 import { ServiceComponent } from './ServiceBlock/component'
+import { InfoSectionComponent } from './InfoSection/component'
 
 type LayoutBlock =
   | Page['layout'][number]
@@ -78,6 +79,7 @@ const blockComponents: BlockComponentMap = {
   footerTwoBlock: FooterBlockTwoComponent,
   imageWithText: ImageWithTextComponent,
   serviceBlock: ServiceComponent,
+  infoSection: InfoSectionComponent,
 }
 
 // Generic helper preserves the specific block subtype

@@ -297,6 +297,7 @@ export interface Page {
     | HeroGeometricBlock
     | ImageWithText
     | ServiceBlock
+    | InfoSection
   )[];
   meta?: {
     title?: string | null;
@@ -1789,6 +1790,18 @@ export interface Service {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "infoSection".
+ */
+export interface InfoSection {
+  badge: string;
+  title: string;
+  description: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'infoSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "NavigationBarBlock".
  */
 export interface NavigationBarBlock {
@@ -1859,18 +1872,6 @@ export interface FooterTwoBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'footerTwoBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "infoSection".
- */
-export interface InfoSection {
-  badge: string;
-  title: string;
-  description: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'infoSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
