@@ -3,7 +3,7 @@ import React from 'react'
 
 export const InfoSectionComponent: React.FC<InfoSection> = ({ badge, title, description }) => {
   return (
-    <section className="relative pt-24 pb-16">
+    <section className="relative pt-24 pb-16 mt-10">
       <div className="container mx-auto px-6 text-center max-w-3xl">
         {/* Badge */}
         <p

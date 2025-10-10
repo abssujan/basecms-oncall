@@ -119,9 +119,13 @@ export const FormBlock: React.FC<FormBlockProps> = ({ enableIntro, form, introCo
   )
 
   return (
-    <div className="container mx-auto lg:max-w-[48rem]">
+    <div className="container mx-auto lg:max-w-5xl py-20">
       {enableIntro && introContent && !hasSubmitted && (
-        <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
+        <RichText
+          className="prose prose-lg dark:prose-invert max-w-none mb-5 text-center"
+          data={introContent}
+          enableGutter={false}
+        />
       )}
       <div className="p-4 lg:p-6 border border-border rounded-[0.8rem]">
         <FormProvider {...formMethods}>
@@ -132,14 +136,14 @@ export const FormBlock: React.FC<FormBlockProps> = ({ enableIntro, form, introCo
           {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
           {!hasSubmitted && (
             <form id={formID?.toString()} onSubmit={handleSubmit(onSubmit)}>
-              <div className="mb-4 last:mb-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {formFields &&
                   formFields?.map((field, index) => {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields]
                     if (Field) {
                       return (
-                        <div className="mb-6 last:mb-0" key={index}>
+                        <div className="col-span-1" key={index}>
                           <Field
                             form={formFields}
                             {...field}
@@ -155,7 +159,7 @@ export const FormBlock: React.FC<FormBlockProps> = ({ enableIntro, form, introCo
                   })}
               </div>
 
-              <Button form={formID?.toString()} type="submit" variant="default">
+              <Button form={formID?.toString()} type="submit" variant="default" className="mt-4">
                 {submitButtonLabel}
               </Button>
             </form>
