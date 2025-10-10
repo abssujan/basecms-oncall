@@ -36,6 +36,7 @@ import { ImageWithTextComponent } from './ImageWithTextBlock/component'
 import { ServiceComponent } from './ServiceBlock/component'
 import { InfoSectionComponent } from './InfoSection/component'
 import { ContentShowcaseComponent } from './ContentShowcase/component'
+import { MapBlockClient } from './Map/componet'
 
 type LayoutBlock =
   | Page['layout'][number]
@@ -82,6 +83,7 @@ const blockComponents: BlockComponentMap = {
   serviceBlock: ServiceComponent,
   infoSection: InfoSectionComponent,
   contentShowcase: ContentShowcaseComponent,
+  map: MapBlockClient,
 }
 
 // Generic helper preserves the specific block subtype

@@ -55,6 +55,7 @@ import { Services } from './collections/Service'
 import { ServiceBlock } from './blocks/ServiceBlock/config'
 import { InfoSection } from './blocks/InfoSection/config'
 import { ContentShowcase } from './blocks/ContentShowcase/config'
+import { MapBlock } from './blocks/Map/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -132,6 +133,7 @@ export default buildConfig({
     ServiceBlock,
     InfoSection,
     ContentShowcase,
+    MapBlock,
   ],
   collections: [Pages, Users, Media, Categories, Posts, Orders, Customers, Dashboard, Services],
   editor: defaultLexical,

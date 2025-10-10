@@ -88,6 +88,7 @@ export const Pages: CollectionConfig = {
                 'serviceBlock',
                 'infoSection',
                 'contentShowcase',
+                'map',
               ],
               blocks: [],
               required: true,
