@@ -14,6 +14,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server'
 import { Locale, NextIntlClientProvider } from 'next-intl'
 import { getPayload, type GlobalSlug, type TypedLocale } from 'payload'
 import config from '@payload-config'
+import ClientLayout from '@/components/ClientLayout'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -58,10 +59,12 @@ export default async function RootLayout({ children, params }: LayoutProps) {
           disableTransitionOnChange
         >
           <NextIntlClientProvider locale={locale} messages={messages}>
-            <AdminBar adminBarProps={{ preview: isEnabled }} />
-            <RenderBlocks blocks={headerLayout} />
-            {children}
-            <RenderBlocks blocks={footerLayout} />
+            <ClientLayout>
+              <AdminBar adminBarProps={{ preview: isEnabled }} />
+              <RenderBlocks blocks={headerLayout} />
+              {children}
+              <RenderBlocks blocks={footerLayout} />
+            </ClientLayout>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
