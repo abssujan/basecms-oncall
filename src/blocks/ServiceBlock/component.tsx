@@ -11,7 +11,7 @@ export async function ServiceComponent() {
     depth: 1,
   })
 
-  console.log('Services fetched:', services)
+  // console.log('Services fetched:', services)
 
   return (
     <div className="max-w-7xl mx-auto p-6">

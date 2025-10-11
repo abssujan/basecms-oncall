@@ -95,6 +95,7 @@ function mapButtonVariant(variant?: string | null): ButtonVariant {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
+  id,
   serviceName = 'Professional Service',
   shortDescription = 'Quality service with expert technicians',
   startingPrice = 'From ৳1,000',
@@ -219,11 +220,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                 {(buttons && buttons.length > 0
                   ? buttons
                   : [
-                      { label: 'View Details', href: `/services/${serviceId}`, variant: 'ghost' },
-                      { label: 'Book Now', href: `/services/${serviceId}`, variant: 'primary' },
+                      { label: 'View Details', href: `/services/${id}`, variant: 'ghost' },
+                      { label: 'Book Now', href: `/services/${id}`, variant: 'primary' },
                     ]
                 ).map((btn, index) => (
-                  <Link key={('id' in btn && btn.id) || index} href={{ pathname: btn.href || '/' }}>
+                  <Link key={('id' in btn && btn.id) || index} href={`/services/${id}`}>
                     <Button
                       variant={mapButtonVariant(btn.variant)}
                       size={variant === 'compact' ? 'sm' : 'default'}

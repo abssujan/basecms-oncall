@@ -1,14 +1,12 @@
 // app/services/[id]/page.tsx
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
+import { Media, Service } from '@/payload-types'
 
 // SVG Icons
 const StarIcon = () => (
@@ -29,7 +27,18 @@ const ArrowLeftIcon = () => (
   </svg>
 )
 
-export default async function ServiceDetailPage({ params }: { params: Promise<{ id: string }> }) {
+function getMediaUrl(media: number | Media | string | null | undefined): string {
+  if (!media) return '/placeholder.png'
+  if (typeof media === 'number') return '/placeholder.png' // cannot render number directly
+  if (typeof media === 'string') return media
+  return media.url || media.transformedUrl || media.originalUrl || '/placeholder.png'
+}
+
+export default async function ServiceDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string | number }>
+}) {
   const { id } = await params
   const payload = await getPayload({ config: configPromise })
   const services = await payload.find({
@@ -37,8 +46,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     limit: 50,
   })
 
-  const service = services.docs.find((s: any) => s.serviceId === id)
-  console.log(service)
+  const service = services.docs.find((s: Service) => s.id.toString() === id.toString())
+
+  // console.log(service)
 
   if (!service) {
     return (
@@ -55,18 +65,19 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
   const formBlock = service.layout?.find((block: any) => block.blockType === 'formBlock')
   const mediaBlock = service.layout?.find((block: any) => block.blockType === 'mediaBlock')
-  console.log('service.layout:', service.layout)
+  // console.log('service.layout:', service.layout)
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header Section */}
       <div className="relative h-[50vh] bg-gradient-to-r from-primary/10 to-accent/10 overflow-hidden">
         <img
-          src={service.image?.url || '/placeholder.svg'}
+          src={getMediaUrl(service?.image)}
           alt={service.serviceName}
           className="absolute inset-0 w-full h-full object-cover mix-blend-overlay"
           loading="lazy"
         />
+        {/* <Media className="-z-10 object-cover" fill resource={service.image?.url} /> */}
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative container mx-auto px-4 h-full flex items-center">
           <div className="text-white max-w-2xl">
@@ -77,17 +88,17 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               <ArrowLeftIcon />
               Back to Services
             </Link>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">{service.serviceName}</h1>
-            <p className="text-xl text-white/90 mb-6">{service.shortDescription}</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{service?.serviceName}</h1>
+            <p className="text-xl text-white/90 mb-6">{service?.shortDescription}</p>
             <div className="flex items-center gap-6">
               <Badge className="bg-primary text-primary-foreground px-3 py-1">
-                {service.startingPrice}
+                {service?.startingPrice}
               </Badge>
               <div className="flex items-center gap-1">
                 <StarIcon />
-                <span className="font-semibold">{service.avgRating || 0}</span>
+                <span className="font-semibold">{service?.id || 0}</span>
               </div>
-              <span className="text-white/80">Response: {service.responseTime}</span>
+              <span className="text-white/80">Response: {service?.responseTime}</span>
             </div>
           </div>
         </div>
@@ -114,7 +125,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
               </CardContent>
             </Card>
-            <RenderBlocks blocks={service.layout || []} />
+            {service.layout?.length ? (
+              <RenderBlocks blocks={service.layout} />
+            ) : (
+              <p className="text-gray-500">No content available</p>
+            )}
 
             {/* Booking Sidebar could also have steps if stored in Payload */}
             {/* For now, skipping steps unless they are added in CMS */}
