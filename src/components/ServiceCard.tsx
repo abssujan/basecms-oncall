@@ -106,7 +106,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   badges = ['Certified'],
   image = null,
   variant = 'default',
-  serviceId = 'emergency-repair',
   buttons,
 }) => {
   const cardClasses = {

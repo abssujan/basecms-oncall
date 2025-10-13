@@ -1765,22 +1765,7 @@ export interface Service {
   /**
    * Build your page layout by adding content blocks below.
    */
-  layout?:
-    | (
-        | CallToActionBlock
-        | HighImpactHero
-        | MediumImpactHero
-        | LowImpactHero
-        | ContentBlock
-        | MediaBlock
-        | CodeBlock
-        | BannerBlock
-        | NavBlock
-        | FooterBlock
-        | ArchiveBlock
-        | FormBlock
-      )[]
-    | null;
+  layout?: (FormBlock | Map | InfoSection)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -1791,6 +1776,43 @@ export interface Service {
   };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "map".
+ */
+export interface Map {
+  /**
+   * The text that appears when a user clicks on the map marker.
+   */
+  popup: string;
+  location: {
+    /**
+     * Latitude coordinate for the map marker (e.g., 23.75385)
+     */
+    lat: number;
+    /**
+     * Longitude coordinate for the map marker (e.g., 90.35974)
+     */
+    lng: number;
+  };
+  style?: {
+    /**
+     * Set the height of the map container.
+     */
+    height?: string | null;
+    /**
+     * Set the width of the map container.
+     */
+    width?: string | null;
+  };
+  /**
+   * Map zoom level (1/20). Higher values zoom closer.
+   */
+  zoom: number;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'map';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1841,43 +1863,6 @@ export interface ContentShowcase {
   id?: string | null;
   blockName?: string | null;
   blockType: 'contentShowcase';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "map".
- */
-export interface Map {
-  /**
-   * The text that appears when a user clicks on the map marker.
-   */
-  popup: string;
-  location: {
-    /**
-     * Latitude coordinate for the map marker (e.g., 23.75385)
-     */
-    lat: number;
-    /**
-     * Longitude coordinate for the map marker (e.g., 90.35974)
-     */
-    lng: number;
-  };
-  style?: {
-    /**
-     * Set the height of the map container.
-     */
-    height?: string | null;
-    /**
-     * Set the width of the map container.
-     */
-    width?: string | null;
-  };
-  /**
-   * Map zoom level (1/20). Higher values zoom closer.
-   */
-  zoom: number;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'map';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

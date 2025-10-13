@@ -1,5 +1,5 @@
 // app/services/[id]/page.tsx
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
@@ -68,7 +68,7 @@ export default async function ServiceDetailPage({
   // console.log('service.layout:', service.layout)
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       {/* Header Section */}
       <div className="relative h-[50vh] bg-gradient-to-r from-primary/10 to-accent/10 overflow-hidden">
         <img
@@ -105,26 +105,74 @@ export default async function ServiceDetailPage({
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-3 gap-8">
+      <div className="w-full">
+        {/* formate it for grid or two section but now I render just block */}
+        <div className="">
           {/* Left Column */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="">
             {/* Features */}
-            <Card>
-              <CardHeader>
-                <CardTitle>What&rsquos Included</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {service.badges?.map((badge: any, index: number) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <CheckIcon />
-                      <span>{badge.label}</span>
-                    </div>
-                  ))}
+            <div className="max-w-4xl mx-auto mt-10">
+              <section className="relative pt-24 pb-16 mt-10">
+                <div className="container mx-auto px-6 text-center max-w-3xl">
+                  {/* Title */}
+                  <h2
+                    className="text-4xl md:text-5xl font-bold tracking-tight 
+      text-gray-900 dark:text-gray-100 mb-6 leading-tight"
+                  >
+                    Our Services
+                  </h2>
+
+                  {/* Description */}
+                  <p
+                    className="text-lg text-gray-600 dark:text-gray-400 
+      max-w-2xl mx-auto leading-relaxed"
+                  >
+                    Expert mechanic services ensuring reliability, performance, and care for every
+                    vehicle.
+                  </p>
+
+                  {/* Decorative Accent Line */}
+                  <div className="mt-10 flex justify-center">
+                    <span className="w-20 h-1 rounded-full bg-orange-500 dark:bg-orange-400"></span>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+
+                {/* Optional Subtle Background Decoration */}
+                <div
+                  className="absolute inset-0 -z-10 
+    bg-[radial-gradient(circle_at_center,rgba(255,237,213,0.3)_0%,transparent_70%)] 
+    dark:bg-[radial-gradient(circle_at_center,rgba(251,146,60,0.1)_0%,transparent_70%)]"
+                ></div>
+              </section>
+              <Card className="group overflow-hidden transition-shadow hover:shadow-lg">
+                <CardHeader className="space-y-3">
+                  <CardTitle className="text-center text-2xl">{service.serviceName}</CardTitle>
+                  <CardDescription className="text-center text-base leading-relaxed">
+                    {service.shortDescription}
+                  </CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                  {service.badges && service.badges.length > 0 ? (
+                    <div className="grid gap-3 md:grid-cols-2">
+                      {service.badges.map((badge, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center gap-3 rounded-lg bg-muted/50 p-3 transition-colors hover:bg-muted"
+                        >
+                          <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                            <CheckIcon />
+                          </div>
+                          <span className="text-sm font-medium">{badge.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-center text-sm text-muted-foreground">No badges available</p>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
             {service.layout?.length ? (
               <RenderBlocks blocks={service.layout} />
             ) : (
@@ -136,66 +184,10 @@ export default async function ServiceDetailPage({
           </div>
 
           {/* Booking Sidebar */}
-          <div className="lg:col-span-1">
-            {/* <Card className="sticky top-8">
-              <CardHeader>
-                <CardTitle>Book This Service</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="text-center py-4 border-b">
-                  <div className="text-3xl font-bold text-primary">{service.startingPrice}</div>
-                  <div className="text-sm text-muted-foreground">Starting price</div>
-                </div>
-
-                <form className="space-y-4">
-                  <div>
-                    <Label htmlFor="name">Full Name</Label>
-                    <Input id="name" placeholder="Enter your name" />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" type="tel" placeholder="(555) 123-4567" />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="vehicle">Vehicle Information</Label>
-                    <Input id="vehicle" placeholder="Year, Make, Model" />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="date">Preferred Date</Label>
-                    <Input id="date" type="date" />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="time">Preferred Time</Label>
-                    <Input id="time" type="time" />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="notes">Additional Notes</Label>
-                    <Textarea
-                      id="notes"
-                      placeholder="Describe your issue or special requirements"
-                    />
-                  </div>
-
-                  <Button className="w-full" size="lg">
-                    Schedule Service
-                  </Button>
-                </form>
-
-                <div className="text-center text-sm text-muted-foreground">
-                  <p>Response time: {service.responseTime}</p>
-                  <p>Available 24/7 for emergencies</p>
-                </div>
-              </CardContent>
-            </Card> */}
-
+          {/* <div className="lg:col-span-1">
             {mediaBlock && <RenderBlocks blocks={[mediaBlock]} />}
             {formBlock && <RenderBlocks blocks={[formBlock]} />}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
