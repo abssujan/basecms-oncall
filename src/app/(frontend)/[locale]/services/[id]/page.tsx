@@ -128,7 +128,7 @@ export default async function ServiceDetailPage({
       max-w-2xl mx-auto leading-relaxed"
                   >
                     Expert mechanic services ensuring reliability, performance, and care for every
-                    vehicle.
+                    vehicle...
                   </p>
 
                   {/* Decorative Accent Line */}
