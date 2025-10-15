@@ -1,9 +1,12 @@
+import { ServiceComponent } from '@/blocks/ServiceBlock/component'
 import React from 'react'
 
 const page = () => {
   return (
-    <div className="h-screen flex justify-center items-center">
-      <h1 className="text-5xl text-center">We are working on this </h1>
+    <div className="flex justify-center items-center">
+      <div className="py-10">
+        <ServiceComponent />
+      </div>
     </div>
   )
 }
